@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimation for smooth Weyl's sums</title>
+    
+    <style>
+        body {
+            font-family: "Georgia", "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .paper-container {
+            background-color: #fff;
+            padding: 50px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Environment Styles */
+        .theorem, .lemma, .remark, .proof {
+            margin: 20px 0;
+            padding: 15px 20px;
+            border-radius: 4px;
+        }
+
+        .theorem {
+            background-color: #eef4ff;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .theorem-title, .lemma-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .theorem-body, .lemma-body {
+            font-style: italic;
+        }
+
+        .lemma {
+            background-color: #fcf6e5;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .proof {
+            margin-top: 0;
+            padding-left: 0;
+        }
+
+        .proof-title {
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        .qed {
+            float: right;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        /* Math Display Styling */
+        .math-display {
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+    </style>
+
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            macros: {
+                e: ["e\\left(#1\\right)", 1],
+                Z: "\\mathbb{Z}",
+                R: "\\mathbb{R}",
+                N: "\\mathbb{N}",
+                eps: "\\epsilon",
+                A: "\\mathcal{A}",
+                m: "\\mathfrak{m}"
+            }
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="paper-container">
+
+    <h1>Estimation for smooth Weyl's sums</h1>
+
+    <p>Let $k \in \N$ and $P$ be large real numbers. When $2 \le R \le P$, define the set of $R$-smooth numbers:
+    \[
+    \A(P,R) = \{n \in [1,P] \cap \Z : p|n \Rightarrow p \le R\}
+    \]
+    Let $\alpha \in \R$. We define the smooth Weyl sum:
+    \[
+    f(\alpha; P, R) = \sum_{x \in \A(P,R)} e(\alpha x^k).
+    \]
+    In this note, I will explain only the following theorem, from which the bound for Waring's Problem is established using the classical circle method by Hardy and Littlewood.</p>
+
+    <div class="theorem">
+        <span class="theorem-title">Theorem 1</span>
+        <div class="theorem-body">
+            Let $\m$ denote the set of real numbers $\alpha$ s.t. whenever $a \in \Z$, $q \in \N$, $(a,q)=1$ and $|\alpha - \frac{a}{q}| \le q^{-1}P^{1-k}$, one has $q > P$. Then when $\eta = \eta(\epsilon, k)$ is a sufficiently small positive number, and $2 \le R \le P^\eta$, we have
+            \[
+            \sup_{\alpha \in \m} |f(\alpha; P, R)| \ll_{\epsilon, k} P^{1-\rho(k)+\epsilon},
+            \]
+            where, when $k$ is large, $\rho(k)^{-1} = k(\log k + O(\log \log k))$.
+        </div>
+    </div>
+
+    <p>We define $S_s(P,R)$ to be the number of solutions of the diophantine equation
+    \[
+    x_1^k + \dots + x_s^k = y_1^k + \dots + y_s^k
+    \]
+    with $x_i, y_i \in \A(P,R)$ ($1 \le i \le s$). Thus,
+    \[
+    S_s(P,R) := \int_0^1 |f(\alpha; P, R)|^{2s} d\alpha.
+    \]</p>
+
+    <p>The estimation for $f(\alpha; P, R)$ is based on Vaughan in Section 10 of "A new iterative method in Waring's Problem". It connects the smooth Weyl's sum to $S_s(P,R)$, and by working on mean values, we obtain the bound for $S_s(P,R)$. Now, I will introduce the above as the main theorem.</p>
+    
+    <p>We say $\Delta_s = \Delta_{s,k}$ is permissible if $S_s(P,R) \ll P^{\lambda_{s,k}+\epsilon}$ with $\lambda_{s,k} = 2s - k + \Delta_{s,k}$. Then, if it is permissible, we have $\Delta_s$ non-negative and $\Delta_s \le k$.</p>
+
+    <div class="theorem">
+        <span class="theorem-title">Theorem 2</span>
+        <div class="theorem-body">
+            Let $k \ge 4$ and $t \in \N$. For each $s \in \N$ with $2 \le s \le t$, define $\Delta_s = \Delta_{s,k}$ to be the unique positive solution of the equation
+            \[
+            \Delta_s e^{\Delta_s/k} = k e^{1-2s/k}.
+            \]
+            Then, $\Delta_{s,k}$ is permissible and then $\Delta_{s,k}^* = k e^{1-2s/k}$ is permissible.
+        </div>
+    </div>
+
+    <div class="theorem">
+        <span class="theorem-title">Theorem 3</span>
+        <div class="theorem-body">
+            Let $\alpha \in \R$ and $r \in \mathbb{N}$, and suppose that $\mathrm{Q}, M$ and $R$ satisfy $2 \le R \le M < \mathrm{Q}$. Then
+            \[
+            \sum_{\substack{x \in \A(\mathrm{Q},R) \\ (x,r)=1}} \dots \ll R \log \mathrm{Q} \sup \dots
+            \]
+            <em>(Note: The explicit bound involves auxiliary sums defined below)</em>
+        </div>
+    </div>
+    <p>where
+    \[
+    V_r(\alpha; Q, M, R; \pi, \theta) = \sum_{\substack{v \in \mathcal{B}(M, \pi, R) \\ (v,r)=1}} \left|
+    \sum_{\substack{u \in \A(Q/M, \pi) \\ (u,r)=1}} e(\alpha (uv)^k + \Theta u) \right|,
+    \]
+    \[
+    \mathcal{B}(M, \pi, R) = \{v \in \N : M < v \le M\pi, \pi|v, \text{ and } p|v \Rightarrow \pi \le p \le R\}.
+    \]</p>
+
+    <p>For an integer $v$, let $S_0(v)$ denote the largest square-free divisor of $v$. Define the set $C_q(l)$ by
+    \[
+    C_q(l) = \{x \in \Z \cap [1,l] : S_0(x) | S_0(q)\}.
+    \]</p>
+
+    <div class="lemma">
+        <span class="lemma-title">Lemma 1</span>
+        <div class="lemma-body">
+            Suppose that $L$ is a positive real number and $r$ is a positive integer with $\log r \ll \log L$. Then for each $\epsilon > 0$,
+            \[
+            \text{Card } C_r(L) \ll L^\epsilon.
+            \]
+        </div>
+    </div>
+
+    <div class="proof">
+        <span class="proof-title">Proof:</span>
+        <p>Write $l = \#\{y \le L : S_0(y) = S_0(r)\}$, then
+        \[
+        \# C_r(L) \ll d(L) \#\{y \le L : S_0(y) = S_0(r)\} \ll L^\epsilon l.
+        \]
+        Suppose that $S_0(r) = p_1 \dots p_n$, then $n \ll \frac{\log r}{\log \log r} \ll \frac{\log L}{\log \log L}$. Note $l$ is bounded above by # of solutions of the inequality
+        \[
+        u_1 \log p_1 + \dots + u_n \log p_n \le \log L
+        \]
+        with $u_i \in \N$. But for $m \in \N \cap [1, \log L]$, # of solutions of the equation $u_1 + \dots + u_n = m$ with $u_i \in \N \cup \{0\}$ is $\ll \frac{(m+n)^{n-1}}{(n-1)!}$. So that $l \ll \frac{(\log L)^n}{(n-1)!}$.
+        By Stirling's formula, it yields that $\log l \ll n(\log \log n - \log n) + n$. Hence, by combining with the previous bound for $n$, we complete the proof of the lemma. <span class="qed">◼</span></p>
+    </div>
+
+    <p>The author then estimates $f(\alpha; P, R)$ in large moduli and small moduli, respectively.</p>
+
+    <div class="lemma">
+        <span class="lemma-title">Lemma 2</span>
+        <div class="lemma-body">
+            Suppose that $\lambda$ satisfies $\frac{1}{2} < \lambda < 1$, and write $M = P^\lambda$. Let $\alpha \in \R$, and suppose that there exists $a \in \Z$ and $q \in \N$ satisfying $(a,q)=1$ and $|\alpha - \frac{a}{q}| \le q^{-2}$. Then when $t, w \in \N$ and $\Delta_t$ and $\Delta_w$ are permissible:
+            \[
+            f(\alpha; P, R) \ll q^\epsilon P^{1+\epsilon}(M^{\Delta_w}(P/M)^{\Delta_t}(q^{-1} + M^{-k} + (P/M)^{-k} + qP^{-k}))^{\frac{1}{2tw}} + M.
+            \]
+        </div>
+    </div>
+
+    <div class="proof">
+        <span class="proof-title">Proof:</span>
+        <p>By applying Theorem 3 with $r=1$, $\exists \pi$ prime to $\pi \le R$ and $\theta \in [0,1)$, such that
+        \[
+        f(\alpha; P, R) \ll q^\epsilon P^\epsilon R \sum_{v \in \A(MR,R)} |h(\alpha; v, \theta)| + M
+        \]
+        where 
+        $$h(\alpha; v, \theta) = \sum_{v \in \A(P/M, \pi)} e(\alpha u^k v^k + \theta u)$$
+        After taking this sum to $t$-th power, it counts the solutions of the diophantine equation $$u_1^k + \dots + u_t^k = c$$ with $u_i \in \A(P/M, \pi)$ weighted as $e(\theta(u_1+\dots+u_t))$, where $$u_1+\dots+u_t = c \in [1, t(P/M)^k].$$
+        Let $n_c$ be the number of solutions of the above without counting with weight, then
+        \[
+        (\sum_v |h(\dots)|)^{2tw} \le (MR)^{2w(t-1)} (\sum_c n_c)^{2w-2} (\sum_c n_c^2) J_w(\alpha)
+        \]
+        where $$J_w(\alpha) = \sum_c |g(\alpha; c, \theta)|^{2w}$$ and $$g(\alpha; c, \theta) = \sum_v \epsilon(v, \theta) e(\alpha c v^k).$$
+        By the underlying diophantine equations of $n_c$, we get $\sum n_c \le (P/M)^t$ and $\sum n_c^2 \le S_t(P/M, R)$. If we take $$\tilde{n}_d = \int_0^1 |g(\beta, c, \theta)|^{2w} e(-\beta d) d\beta,$$
+        clearly $\tilde{n}_d \le S_w(MR, R)$. Therefore, we can write
+        \[
+        J_w(\alpha) = \sum_{c} \sum_{d} \tilde{n}_d e(\alpha c d)
+        \]
+        whence we deduce its bound by applying Weyl's classical inequality. Then, after applying the bound established in Theorem 2, we complete the proof. <span class="qed">◼</span></p>
+    </div>
+
+    <p>As for the small moduli, apart from adapting the idea of connecting the power of Weyl's sum with solutions to diophantine equations, we utilize the benefits of small moduli. This yields a well-spaced condition, allowing us to apply the large Sieve inequality to split the cardinality of solution sets and the exponential sums. (This is a method by Vaughan in the same paper where he established Theorem 3).</p>
+
+    <div class="lemma">
+        <span class="lemma-title">Lemma 3</span>
+        <div class="lemma-body">
+            Suppose that $\frac{1}{2} < \lambda < 1$ and write $M = P^\lambda$. Let $\alpha \in \R$, $a \in \Z$ and $q \in \N$ satisfy $(a,q)=1$, $|q\alpha - a| \le \frac{1}{2}(MR)^{-k}$. Suppose that $q \le 2(MR)^k$ and either $|q\alpha - a| > M P^{-k}$ or $q > MR$. Then if $s \in \N$ with $2s \ge k+1$, and $\Delta_s$ is permissible,
+            \[
+            f(\alpha; P, R) \ll M^{1+\epsilon} + P^{1+\epsilon} (M^{-1}(P/M)^{\Delta_s}(1 + q(P/M)^{-k}))^{\frac{1}{2s}}.
+            \]
+        </div>
+    </div>
+
+    <div class="proof">
+        <span class="proof-title">Proof:</span>
+        <p>Observe that
+        \[
+        f(\alpha; P, R) = \sum_{d \in C_q(P) \cap \A(P,R)} \sum_{\substack{x \in \A(P/d, R) \\ (x,q)=1}} e(\alpha (xd)^k).
+        \]
+        On applying Lemma 1, we can apply Theorem 3 for some $\theta \in [0,1)$ and a prime $\Pi \le R$, which yields
+        \[
+        f(\alpha; P, R) \ll M^{1+\epsilon} + P^\epsilon R \cdot g(\alpha; d, \pi, \theta),
+        \]
+        where $g(\dots)$ is the inner sum. Therefore, by raising the LHS side to $2s$ power and let $b_y$ denote # of solutions to the diophantine equation $$u_1^k + \dots + u_s^k = y$$ with $u_i \in \A(P/M, R)$, it follows that
+        \[
+        g(\dots)^{2s} \ll \left(\frac{MR}{d}\right)^{2s-1} \sum_{v} \left|
+        \sum_{y} b_y e(\alpha v^k y) \right|^2.
+        \]
+        We then classify $v$ into $O(P^\epsilon d^k)$ sets $V_j$, so that for $v_1, v_2 \in V_j$, we have $(v_1 d)^k \equiv (v_2 d)^k \pmod q$. Thus, there is a suitable $j$ such that we manage to show $(P/M)^{-k}$ is well-spaced. Then, by the large sieve inequality,
+        \[
+        \sum_{v \in V_j} \left| \sum_{y} b_y e(\alpha (vd)^k y) \right|^2 \ll (q + (P/M)^k) \sum |b_y|^2 \ll (q+(P/M)^k) S_s(P/M, R).
+        \]
+        Then the lemma follows from the bound in Theorem 2. <span class="qed">◼</span></p>
+    </div>
+
+    <p>Therefore, by combining Lemma 2 and Lemma 3 and choosing some suitable parameters, we obtain Theorem 1. Hence, it leaves us to verify that Theorem 2 and 3 are valid. Theorem 2 is a simplification of the following by Trevor Wooley.</p>
+
+    <div class="theorem">
+        <span class="theorem-title">Theorem 4</span>
+        <div class="theorem-body">
+            Suppose that $t$ is a positive integer and $\mu$ is a positive real number with $2t-k < \mu \le 2t$ and satisfying the property that, given $\epsilon > 0$, there is a positive number $\eta_0 = \eta_0(k,s)$ s.t. whenever $0 < \eta < \eta_0$, then $S_t(P, P^\eta) \ll P^{\mu + \epsilon}$. Define the real numbers $\lambda_s, \theta_s, \Delta(s)$ ($s=t, t+1, \dots$) successively by $\lambda_t = \mu, \theta_t = 0, \Delta(t) = \mu - 2t + k$, and for $s > t$, by
+            \[
+            \theta_s = \frac{1}{k+\Delta(s-1)} + \left(\frac{1}{k} - \frac{1}{k+\Delta(s-1)}\right) \left(\frac{k-\Delta(s-1)}{2k}\right)^{k-1}
+            \]
+            \[
+            \Delta(s) = \Delta(s-1)(1-\theta_s) + k\theta_s - 1
+            \]
+            \[
+            \lambda_s = 2s - k + \Delta(s).
+            \]
+            Then given $t'$ and $\epsilon' > 0$, there is an $\eta_1 = \eta_1(k, \epsilon', t')$ such that whenever $0 < \eta < \eta_1$ and $t \le s \le t'$,
+            \[
+            S_s(P, P^\eta) \ll P^{\lambda_s + \epsilon'}.
+            \]
+        </div>
+    </div>
+
+    <p>Let $\Psi(z,c)$ denote a polynomial with integer coefficients in the variables $z, c_1, \dots, c_t$ of degree in least one in $z$. Let $S_s(P,Q,R) = S_s(P,Q,R; \Psi, C, C')$ denote the number of solutions of the equation
+    \[
+    \Psi(z, c) + x_1^k + \dots + x_s^k = \Psi(z', c') + y_1^k + \dots + y_s^k.
+    \]
+    For a given real number $1 \le P^\theta \le Q$, let $T_s(P, Q, R; \theta)$ denote the number of solutions to the equation
+    \[
+    \Psi(z, c) + w^k(u_1^k + \dots + u_s^k) = \Psi(z', c) + w^k(v_1^k + \dots + v_s^k).
+    \]
+    The idea of the proof of Theorem 4 is as follows:
+    <ol>
+        <li>Bound $S_s(P,Q,R)$ with terms relating to $T_s$.</li>
+        <li>Replace $\Psi(z,c)$ with a recursive function.</li>
+        <li>Relate $T_s$ to $S_s$.</li>
+    </ol>
+    </p>
+
+    <p><strong>Proof of Theorem 3 (by Vaughan):</strong> Write
+    \[
+    f(\alpha; P, R) = \sum_{q_0|q} \sum_{\substack{x \in \A(P,R) \\ (x^k, q) = q_0}} e(\alpha x^k).
+    \]
+    Let $q_k^k$ be the largest $k$-th power dividing $q$. Then $q_0 = q_k^k \dots q_1$. Hence,
+    \[
+    f(\alpha; P, R) = \sum_{q,r}^* T(\dots) + O(q^\epsilon P^{1-\delta})
+    \]
+    where $\sum^*$ indicates the sum over $q_0 r = q$ and square-free conditions.</p>
+
+    <div class="lemma">
+        <span class="lemma-title">Lemma</span>
+        <div class="lemma-body">
+            Suppose that $2 \le R \le M < y \le C$ and $y \in \A(Q,R)$. Then there exists a unique triple $(p, u, v)$ with
+            (i) $y = uv$, (ii) $u \in \A(Q/v, p)$, (iii) $M < v \le Mp$, (iv) $p|v$, (v) $p'|v \Rightarrow p \le p' \le R$.
+        </div>
+    </div>
+    
+    <p>And for any pair of $(p, u, v)$ satisfying (i)-(v), we have $uv \in \A(Q, R)$ and $M < uv \le C$. Note $p$ depends on $v$. That is, we can form a bijection between $y$ and $(p, u, v)$. Hence, deduce Theorem 3 by replacing $y$ with $uv$.</p>
+
+    <p>This completes the proof of the main Theorem.</p>
+
+</div>
+
+</body>
+</html>
